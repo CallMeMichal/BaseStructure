@@ -23,6 +23,7 @@ namespace BaseStructure.Api
             {
                options.UseSqlServer(configuration.GetConnectionString("Default"),
                builder => builder.CommandTimeout(60)
+
                );
             });
 
