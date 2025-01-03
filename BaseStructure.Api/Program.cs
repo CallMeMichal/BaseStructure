@@ -1,4 +1,3 @@
-
 using BaseStructure.Api.Config;
 using BaseStructure.Application;
 using BaseStructure.Infrastructure;
@@ -10,18 +9,13 @@ namespace BaseStructure.Api
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
-            // Pobieranie konfiguracji z builder.Configuration
             IConfiguration configuration = builder.Configuration;
+            builder.Services.Configure<DatabaseConfig>(configuration.GetSection("ConnectionStrings"));
 
             // BaseStructure.Application project
             builder.Services.AddApplication();
             // BaseStructure.Infrastructure project
             builder.Services.AddInfrastructure();
-
-            // Konfiguracja DatabaseConfiguration
-            var databaseConfig = builder.Configuration.GetSection("ConnectionStrings").Get<DatabaseConfig>();
-
 
             // Dodawanie us³ug do kontenera
             builder.Services.AddControllers();

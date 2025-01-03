@@ -4,7 +4,9 @@ using Microsoft.Extensions.Options;
 
 namespace BaseStructure.Api.Controllers
 {
-    public class HomeController : Controller
+    [ApiController]
+    [Route("[controller]")]
+    public class HomeController : ControllerBase
     {
         private readonly IOptions<DatabaseConfig> _settings;
 
@@ -16,8 +18,8 @@ namespace BaseStructure.Api.Controllers
         [HttpGet("test")]
         public IActionResult Index()
         {
-            var s = _settings.Value.DatabaseName;
-            return View();
+            var databaseName = _settings.Value.DatabaseName; // Pobieranie wartości
+            return Ok(new { DatabaseName = databaseName }); // Zwracanie w odpowiedzi
         }
     }
 }
