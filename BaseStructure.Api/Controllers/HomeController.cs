@@ -22,9 +22,10 @@ namespace BaseStructure.Api.Controllers
         public IActionResult Index()
         {
 
-            var user = _appDbContext.Users.First();
-
             var databaseName = _settings.Value.DatabaseName; // Pobieranie wartości
+            var user = _appDbContext.Users.FirstOrDefault();
+            var test = "";
+
             return Ok(new { DatabaseName = databaseName }); // Zwracanie w odpowiedzi
         }
     }
