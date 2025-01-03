@@ -3,6 +3,7 @@ using BaseStructure.Application;
 using BaseStructure.Infrastructure;
 using BaseStructure.Infrastructure.DatabaseModels.Context;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace BaseStructure.Api
 {
@@ -20,9 +21,10 @@ namespace BaseStructure.Api
             builder.Services.AddInfrastructure();
 
             builder.Services.AddDbContext<AppDbContext>(options =>
-            {
+            {               
                options.UseSqlServer(configuration.GetConnectionString("Default"),
                builder => builder.CommandTimeout(60)
+               .UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery)
                );
             });
 
