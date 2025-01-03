@@ -1,6 +1,8 @@
 using BaseStructure.Api.Config;
 using BaseStructure.Application;
 using BaseStructure.Infrastructure;
+using BaseStructure.Infrastructure.DatabaseModels.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace BaseStructure.Api
 {
@@ -16,6 +18,13 @@ namespace BaseStructure.Api
             builder.Services.AddApplication();
             // BaseStructure.Infrastructure project
             builder.Services.AddInfrastructure();
+
+            builder.Services.AddDbContext<AppDbContext>(options =>
+            {
+               options.UseSqlServer(configuration.GetConnectionString("Default"),
+               builder => builder.CommandTimeout(60)
+               );
+            });
 
             // Dodawanie us³ug do kontenera
             builder.Services.AddControllers();

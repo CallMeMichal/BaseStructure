@@ -2,7 +2,7 @@
 {
     public class DatabaseConfig
     {
-        public string Sql { get; set; }
+        public string Default { get; set; }
         public string DatabaseName { get; set; }
     }
 }
