@@ -1,6 +1,5 @@
 ﻿using BaseStructure.Api.Config;
-using BaseStructure.Application.Service.Home;
-using BaseStructure.Infrastructure.DatabaseModels.Context;
+using BaseStructure.Application.Interface.Home;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
@@ -11,9 +10,9 @@ namespace BaseStructure.Api.Controllers
     public class HomeController : ControllerBase
     {
         private readonly IOptions<DatabaseConfig> _settings;
-        private readonly HomeService _homeService;
+        private readonly IHomeService _homeService;
 
-        public HomeController(IOptions<DatabaseConfig> settings, HomeService homeService)
+        public HomeController(IOptions<DatabaseConfig> settings, IHomeService homeService)
         {
             _settings = settings;
             _homeService = homeService;

@@ -1,4 +1,4 @@
-﻿using BaseStructure.Application.Interface;
+﻿using BaseStructure.Application.Interface.Home;
 using BaseStructure.Domain.DatabaseModels;
 using BaseStructure.Infrastructure.DatabaseModels.Context;
 using Microsoft.EntityFrameworkCore;

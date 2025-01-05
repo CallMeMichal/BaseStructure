@@ -1,4 +1,4 @@
-﻿using BaseStructure.Application.Interface;
+﻿using BaseStructure.Application.Interface.Home;
 using BaseStructure.Infrastructure.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
