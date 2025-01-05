@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using BaseStructure.Application.Interface;
+using BaseStructure.Infrastructure.Repositories;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace BaseStructure.Infrastructure
 {
@@ -6,6 +8,7 @@ namespace BaseStructure.Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
+            services.AddScoped<IHomeRepository, HomeRepository>();
             return services;
         }
     }

@@ -24,4 +24,8 @@
     <ProjectReference Include="..\BaseStructure.Application\BaseStructure.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Middleware\" />
+  </ItemGroup>
+
 </Project>

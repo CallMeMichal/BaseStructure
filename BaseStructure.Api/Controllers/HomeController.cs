@@ -1,4 +1,5 @@
 ﻿using BaseStructure.Api.Config;
+using BaseStructure.Application.Service.Home;
 using BaseStructure.Infrastructure.DatabaseModels.Context;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -10,23 +11,20 @@ namespace BaseStructure.Api.Controllers
     public class HomeController : ControllerBase
     {
         private readonly IOptions<DatabaseConfig> _settings;
-        private readonly AppDbContext _appDbContext;
+        private readonly HomeService _homeService;
 
-        public HomeController(IOptions<DatabaseConfig> settings, AppDbContext appDbContext)
+        public HomeController(IOptions<DatabaseConfig> settings, HomeService homeService)
         {
             _settings = settings;
-            _appDbContext = appDbContext;
+            _homeService = homeService;
         }
 
         [HttpGet("test")]
-        public IActionResult Index()
+        public async Task <IActionResult> Index()
         {
+            var users = await _homeService.GetUsers();
 
-            var databaseName = _settings.Value.DatabaseName; // Pobieranie wartości
-            var user = _appDbContext.Users.FirstOrDefault();
-            var test = "";
-
-            return Ok(new { DatabaseName = databaseName }); // Zwracanie w odpowiedzi
+            return Ok(); // Zwracanie w odpowiedzi
         }
     }
 }
