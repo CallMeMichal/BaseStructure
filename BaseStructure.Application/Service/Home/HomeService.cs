@@ -15,5 +15,7 @@ namespace BaseStructure.Application.Service.Home
         {
             return await _homeRepository.GetUsers();
         }
+
+
     }
 }

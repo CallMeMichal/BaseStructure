@@ -1,5 +1,7 @@
 ﻿using BaseStructure.Api.Config;
 using BaseStructure.Application.Interface.Home;
+using BaseStructure.Contracts.ModelsToApi.Request;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
@@ -18,8 +20,8 @@ namespace BaseStructure.Api.Controllers
             _homeService = homeService;
         }
 
-        [HttpGet("test")]
-        public async Task <IActionResult> Index()
+        [HttpPost("test")]
+        public async Task <IActionResult> Index([FromBody] LoginRequest request)
         {
             var users = await _homeService.GetUsers();
 

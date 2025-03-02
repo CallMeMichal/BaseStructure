@@ -27,6 +27,15 @@ namespace BaseStructure.Api
                .UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery)
                );
             });
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowLocalhost", builder =>
+                {
+                    builder.WithOrigins("http://localhost:3000") // Adres front-endu
+                           .AllowAnyMethod()
+                           .AllowAnyHeader();
+                });
+            });
 
             // Dodawanie us³ug do kontenera
             builder.Services.AddControllers();
@@ -34,7 +43,7 @@ namespace BaseStructure.Api
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
-
+            app.UseCors("AllowLocalhost");
             // Konfiguracja potoku HTTP
             if (app.Environment.IsDevelopment())
             {
@@ -44,8 +53,8 @@ namespace BaseStructure.Api
 
             app.UseHttpsRedirection();
             app.UseAuthorization();
-
             app.MapControllers();
+            
 
             app.Run();
         }
